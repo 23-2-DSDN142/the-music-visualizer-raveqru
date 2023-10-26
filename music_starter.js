@@ -27,10 +27,6 @@ let y2_fallingStar = y2_initial
 let blnFall2 = false
 let timeCounter2 = 0
 
-
-
-
-
 angleMode(DEGREES)
 
 
@@ -158,12 +154,12 @@ function draw_one_frame(words, vocal, drum, bass, other) {
   }
   timeCounter1++
 
-  //falling star2
-  if (bassMap > 60) {
+  //falling star2 
+  if (drumMap > 60) {
     blnFall2 = true
   }
 
-  if (blnFall2 && timeCounter2 > 60) {
+  if (blnFall2 && timeCounter2 > 70) {
     fill(62, 20, 87, 70)
     fallingStar(x2_fallingStar, y2_fallingStar, 2)
     x2_fallingStar = x2_fallingStar + 150
@@ -187,11 +183,12 @@ function draw_one_frame(words, vocal, drum, bass, other) {
   scale(0.5)
   noTint()
   image(treeImg, 0, 100)
-  //mirrored trees image
+  //Reflection- trees image
   noTint()
   image(treeMirroredImg, 0, 530)
   pop()
 
+  //car function 
   car(-200, 390, 4.3)
 
   //text
@@ -199,7 +196,7 @@ function draw_one_frame(words, vocal, drum, bass, other) {
   fill(0)
   textFont('Courier')
   rectMode(CENTER)
-  textSize(10)
+  textSize(7)
 
 
   // display "words"
@@ -218,7 +215,6 @@ function position(x, y, size, angle, vocalMap) {
   fill(240, 35, 80)
   obtuseTriangle(x + 1460, y + 190, size * 10)
 
-
   // first two mountains from right (third row)
   fill(240, 45, 80, 100)
   equilateralTriangle(x + 2000, y + 170, size * 9)
@@ -234,26 +230,21 @@ function position(x, y, size, angle, vocalMap) {
   obtuseTriangleMirrored(x + 1865, y + 95, size * 12, angle + 72)
   shao(x + 2085, y + 520, size * 5, angle + 90)
 
-
-  fill(240, 60, 75)
-  // obtuseTriangle(x + 1600, y+300, size * 12, angle + 130)
-
-
-
+  //two first mountains from left in the second row
   fill(240, 30, 80)
   equilateralTriangle(x + 1, y + 350, size * 8)
-  equilateralTriangle(x - 10, y + 650, size * 4)
   equilateralTriangle(x + 300, y + 340, size * 7)
+  
+  //3rd and 4th mountain in the second row from left
   fill(240, 40, 80)
   equilateralTriangle(x + 550, y + 170, size * 9)
   equilateralTriangle(x + 760, y + 170, size * 9)
+  //light side
   fill(240, 35, 80)
   obtuseTriangle(x + 510, y + 160, size * 10)
   obtuseTriangle(x + 720, y + 160, size * 10)
 
-
-
-
+  //front mountains
   fill(240, 40, 80)
   equilateralTriangle(x - 300, y + 250, size * 9)
   fill(240, 35, 80)
@@ -288,6 +279,7 @@ function position(x, y, size, angle, vocalMap) {
   fill(240, 60, 90)
   obtuseTriangle(x + 2050, y + 200, size * 10)
   obtuseTriangle(x + 2200, y + 500, size * 6)
+  
   //top snow
   fill(255, 40)
   snowTop(x + 64, y + 422, size * 5.5)
@@ -347,7 +339,7 @@ function shao(x, y, size, angle) {
   pop()
 }
 
-
+//base moon drawing 
 function fullMoon(x, y, size) {
   //moon glow first layer
   fill(62, 20, 87, 20)
@@ -360,6 +352,7 @@ function fullMoon(x, y, size) {
   ellipse(x + (50 * size), y + (56 * size), (200 * size), (200 * size))
 }
 
+//texture - circles on top of the moon
 function moonTexture(x, y, size, angle) {
   fill(62, 20, 83)
   ellipse(x + (50 * size), y + (50 * size), (50 * size), (50 * size))
@@ -395,6 +388,7 @@ function moonTexture(x, y, size, angle) {
   ellipse(x + (50 * size), y + (1 * size), (17 * size), (17 * size))
 }
 
+//small illustrations of snow on top of the mountains
 function snowTop(x, y, size) {
   beginShape();
   vertex((8 * size) + x, (1 * size) + y);
@@ -407,6 +401,7 @@ function snowTop(x, y, size) {
   endShape();
 }
 
+//stars in the sky
 function brightStar(x, y, size) {
   // fill(62, 20, 87)
   beginShape();
@@ -422,6 +417,7 @@ function brightStar(x, y, size) {
   endShape();
 }
 
+//parked car, view from inside
 function car(x, y, size) {
   //car base
   fill(0)
@@ -461,7 +457,6 @@ function car(x, y, size) {
   stroke(0)
   strokeWeight(60)
   ellipse(2100, 1340, 500, 500)
-
   stroke(0)
   strokeWeight(90)
   line(x + (590 * size), y + (220 * size), x + (480 * size), y + (220 * size))
@@ -469,8 +464,6 @@ function car(x, y, size) {
   ellipse(2090, 1341, 300, 300)
   fill(0)
   ellipse(2190, 1390, 300, 300)
-
-
 
   //night light shaddows
   stroke(232, 62, 59, 30)
@@ -483,6 +476,8 @@ function car(x, y, size) {
   line(x + (5 * size), y + (270 * size), x + (120 * size), y + (220 * size))
 }
 
+
+//falling star with its train (different from star in the sky)
 function fallingStar(x, y, size) {
   fill(62, 20, 87)
   beginShape();
@@ -504,130 +499,3 @@ function fallingStar(x, y, size) {
   strokeWeight(4)
   line(x + (10 * size), y + (8 * size), x + (-3 * size), y + (-2 * size))
 }
-
-
-
-
-
-// stroke(0)
-// strokeWeight(9)
-// stroke(vocal, 10, 88)
-
-// var vocalMap = map(vocal, 0, 100, 30, 90)
-// var lengthOfLine = 100
-// var lineStart = 10
-// var lineEnd = lineStart + lengthOfLine
-
-// for (var i=0; i<=vocalMap; i++){
-//   let lineStep= i*20;
-//    line(lineStart, lineStep, lineEnd,lineStep)
-
-//  }
-
-// stroke(0)
-// strokeWeight(9)
-// stroke(vocal, 10,66,16)
-
-//   var drumMap = map(drum, 0, 100, 30, 90)
-//   var lengthOfLine = 100
-//   var lineStart = 150
-//   var lineEnd = lineStart + lengthOfLine
-
-
-
-// for (var i=0; i<=drumMap; i++){
-//   let lineStep= i*20;
-//    line(lineStart, lineStep, lineEnd,lineStep)
-
-//  }
-
-
-//  stroke(0)
-//  strokeWeight(9)
-//  stroke(bass, 100,66,19)
-
-//  var bassMap = map(bass, 0, 500, 30, 90)
-//  var lengthOfLine = 100
-//  var lineStart = 300
-//  var lineEnd = lineStart + lengthOfLine
-
-
-
-// for (var i=0; i<=bassMap; i++){
-//  let lineStep= i*20;
-//   line(lineStart, lineStep, lineEnd,lineStep)
-
-// }
-
-
-
-
-
-
-
-// var ballSize = map(vocal, 40, 80, 150, 80,80)
-// var vocalHight = map(vocal, 40, 51,100, height- ballSize, 0+ballSize*2, 80)
-
-// //Colours for the transition (start and end colours)
-// const from = color(4,19,191);
-// const to = color(255);
-// colorMode(RGB);
-
-// var circleColor = lerpColor(from, to, map(vocal, 40, 80, 0, 1));
-
-// fill(circleColor);
-// ellipse(width / 2, vocalHight, ballSize)
-
-// //text
-// textFont('Helvetica')
-// rectMode(CENTER)
-// textSize(22)
-
-
-// // display "words"
-// textAlign(CENTER);
-// textSize(vocal);
-// text(words, width / 2, height / 3);
-
-
-
-
-//    let bar_spacing = height / 10;
-//    let bar_height = width / 12;
-//    let bar_pos_x = width / 2;
-
-//      // Map drum volume to object size
-//   let drumSize = map(drum, 0, 100, 30, 100);
-
-//   // Draw an ellipse with size based on drum volume
-//   ellipse(width/2, height/2, drumSize, drumSize);
-
-
-//    // vocal bar is red
-//    fill(200, 0, 0);
-//    rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-//    fill(0);
-//    text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
-
-//    // drum bar is green
-//    fill(0, 200, 0);
-//    rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-//    fill(0);
-//    text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
-
-//    // bass bar is blue
-//    fill(50, 50, 240);
-//    rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-//    fill(0);
-//    text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
-
-//    // other bar is white
-//    fill(200, 200, 200);
-//    rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-//    fill(0);
-//    text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-//    fill(255, 255, 0);
-
-
-//
-
